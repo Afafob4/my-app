@@ -7,6 +7,6 @@ public class projet {
 	private String intitulee;
 	public double budgee;
 	public List ouvrier;
-	
+	public double age;
 }
 
