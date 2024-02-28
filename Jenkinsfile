@@ -1,24 +1,33 @@
 pipeline {
     agent any
+
     stages {
-        stage('Clean') {
+        stage('Checkout') {
             steps {
-                bat script: 'mvn clean', tool: 'Maven'
+                // Récupérer le code depuis le dépôt Git
+                checkout scm
             }
         }
 
+        stage('Build') {
+            steps {
+                // Construire le projet avec Maven
+                bat 'mvn clean install'
+            }
+        }
 
         stage('Test') {
             steps {
+                // Exécuter les tests Maven
                 bat 'mvn test'
-
-            }
-        }
-        stage('Package') {
-            steps {
-                bat 'mvn package'
             }
         }
     }
 
+    post {
+        success {
+            // Actions à effectuer en cas de succès
+            echo 'Build and tests passed. Ready for deployment!'
+        }
+    }
 }
