@@ -3,10 +3,11 @@ pipeline {
     stages {
         stage('Clean') {
             steps {
-                bat 'mvn clean'
+                bat script: 'mvn clean', tool: 'Maven'
             }
-            
         }
+
+
         stage('Test') {
             steps {
                 bat 'mvn test'
