@@ -3,11 +3,9 @@ pipeline {
     stages {
         stage('Clean') {
             steps {
-                bat '"C:\\Windows\\System32\\cmd.exe" /c mvn clean'
+                bat 'mvn clean'
             }
         }
-
-
 
         stage('Test') {
             steps {
@@ -15,7 +13,7 @@ pipeline {
 
             }
         }
-        stage('Package') {s
+        stage('Package') {
             steps {
                 bat 'mvn package'
             }
